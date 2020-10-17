@@ -1,7 +1,9 @@
 extern crate arts;
 
 use arts::parse::html;
+use arts::render::render::walk;
 
 fn main() {
-    html::parse("<html>これはhtmlです</html>");
+    let node = html::parse("<html>これはhtmlです</html>");
+    walk(node);
 }

@@ -1,9 +1,10 @@
+use std::rc::Rc;
 use html5ever::{parse_document};
 use html5ever::driver::ParseOpts;
-use markup5ever_rcdom::{RcDom};
+use markup5ever_rcdom::{RcDom, Node};
 use html5ever::tendril::stream::TendrilSink;
 
-pub fn parse(html: &str) {
+pub fn parse(html: &str) -> Rc<Node> {
     let parser = parse_document(RcDom::default(), ParseOpts::default());
     let dom = parser.one(html);
     println!("{:?}", dom.document);
@@ -23,4 +24,5 @@ pub fn parse(html: &str) {
             println!("  {}", err);
         }
     }
+    dom.document
 }
